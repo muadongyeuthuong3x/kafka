@@ -1,0 +1,74 @@
+https://stackoverflow.com/questions/32944729/how-to-start-a-mongodb-shell-in-docker-container error mongose 
+
+// use mydb
+
+
+  docker : 
+
+
+ docker run  -p 3000:3000 -d --name node_docker node_docker
+
+
+https://viblo.asia/p/docker-chua-biet-gi-den-biet-dung-phan-2-dockerfile-RQqKLzeOl7z
+
+-d Tạo một container chạy ngầm
+-p
+
+
+ docker exec -it  node_docker bash -> ls   . get file cate name_file
+-- >  printenv get dotenv
+https://docs.docker.com/engine/reference/commandline/exec/
+
+// 
+docker run  -v ${pwd}:/app  -p 3000:3000 -d --name node_docker node_docker
+https://stackoverflow.com/questions/43697810/meaning-of-pwd-path-to-directory
+ duong dan den thu muc app
+ ${pwd}:/app 
+
+ touch name file ( create file )
+
+
+docker run  -v ${pwd}:/app:ro  -p 3000:3000 -d --name node_docker node_docker (ro no create file use touch
+
+
+ docker run  -v ${pwd}:/app  -v /app/node_modules --env PORT=4000 -p 4000:4000 -d --name node_docker_container node_docker
+(env port add)
+
+docker volume prune (delete all unused local volume )
+
+docker rm node_docker_container -vf (
+-v: Xóa tất cả các tập liên quan
+
+-f: Buộc loại bỏ. Giống như, nếu bất kỳ vùng chứa nào đang chạy, bạn cần -f để xóa chúng.)
+
+---  docker compose up -d --build . (tao image before creat compose)
+
+ docker compose down -v     //
+
+
+ docker inspect id container get ipv4 
+
+ // error conection mongo https://stackoverflow.com/questions/51011552/mongodb-on-with-docker-failed-to-connect-to-server-localhost27017-on-first-c
+
+ // 
+
+ docker logs 579d23af2cd3 -f change log realtime
+
+ // ping  ping mongo call mongo exec -it 
+
+
+ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --no-deps node_docker
+ ====> --no-deps khong chay qua serviers
+
+ //https://viblo.asia/p/giao-tiep-giua-cac-container-trong-docker-va-su-dung-docker-compose-GrLZDWoJKk0
+ docker link
+
+
+ https://viblo.asia/p/bao-mat-ung-dung-docker-nodejs-mongo-redis-GrLZDaaVlk0
+
+
+
+
+ .. khac phuc chay container 
+
+ https://serverfault.com/questions/934336/docker-compose-no-such-service-myapp
