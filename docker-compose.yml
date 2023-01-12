@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - 4000:4000
+    restart: unless-stopped
+    networks:
+      - cache-network
+    command: npm run dev
+    depends_on:
+      - redis
+      
+  redis:
+    image: redis
+    container_name: redis_container
+    volumes:
+      - .docker/data/redis:/data
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    expose:
+      - 6379
+    networks:
+      - cache-network
+    healthcheck:
+      test: wget --quiet --tries=1 --spider http://localhost:6379s || exit 1z
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+networks:
+  cache-network:
+    driver: bridge
