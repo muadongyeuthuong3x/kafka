@@ -72,3 +72,5 @@ docker rm node_docker_container -vf (
  .. khac phuc chay container 
 
  https://serverfault.com/questions/934336/docker-compose-no-such-service-myapp
+
+ //https://www.architect.io/blog/2021-01-26/kafka-docker-tutorial/
