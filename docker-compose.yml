@@ -1,21 +1,21 @@
 version: '3'
 
 services:
-  api:
-    build: .
-    volumes:
-      - ./:/app
-      - /app/node_modules
-    ports:
-      - "4000:4000"
-    restart: unless-stopped
-    networks:
-      - cache-network
-    command: npm run dev
-    depends_on:
-      - redis
-      - db
-      - zookeeper
+  # api:
+  #   build: .
+  #   volumes:
+  #     - ./:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - "4000:4000"
+  #   restart: unless-stopped
+  #   networks:
+  #     - cache-network
+  #   command: npm run dev
+  #   depends_on:
+  #     - redis
+  #     - db
+  #     - zookeeper
 
   redis:
     image: redis
@@ -51,20 +51,7 @@ services:
 volumes:
   pgdata:
 
-  zookeeper:
-    image: wurstmeister/zookeeper
-    container_name: zookeeper
-    ports:
-      - "2181:2181"
-  kafka:
-    image: wurstmeister/kafka
-    container_name: kafka
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_ADVERTISED_HOSTNAME: localhost
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+
 
 networks:
   cache-network:
