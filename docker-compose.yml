@@ -1,21 +1,20 @@
 version: '3'
 
 services:
-  # api:
-  #   build: .
-  #   volumes:
-  #     - ./:/app
-  #     - /app/node_modules
-  #   ports:
-  #     - "4000:4000"
-  #   restart: unless-stopped
-  #   networks:
-  #     - cache-network
-  #   command: npm run dev
-  #   depends_on:
-  #     - redis
-  #     - db
-  #     - zookeeper
+  api:
+    build: .
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+    networks:
+      - cache-network
+    command: npm run dev
+    depends_on:
+      - redis
+      - db
 
   redis:
     image: redis
